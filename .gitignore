@@ -1,0 +1,10 @@
+# Dev / Claude tooling
+CLAUDE.md
+.agents/
+.claude/
+*.code-workspace
+skills-lock.json
+
+# Backup files (not part of the live site)
+script.js
+beforeindex.html

@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>moonexe.org</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="favicon.png">
+<meta property="og:title" content="moonexe.org">
+<meta property="og:description" content="all my links and projects here">
+<meta property="og:image" content="https://moonexe.org/backGround.png">
+<meta property="og:url" content="https://moonexe.org">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="moonexe.org">
+<meta name="twitter:description" content="all my links and projects here">
+<meta name="twitter:image" content="https://moonexe.org/backGround.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ═══════════ DESKTOP ═══════════ -->
+<div id="desktop">
+  <!-- Desktop icons injected by JS -->
+  <div id="select-box"></div>
+</div>
+
+<!-- ═══════════ WINDOWS LAYER ═══════════ -->
+<div id="windows-layer">
+  <!-- Windows injected by JS -->
+</div>
+
+<!-- ═══════════ TASKBAR ═══════════ -->
+<div id="taskbar">
+
+  <!-- Start button (hookable — wire up easter egg later) -->
+  <button id="start-btn" title="Start" aria-label="Start">
+    <img src="favicon.png" alt="Start">
+  </button>
+
+  <!-- Center: running app icons (populated by JS) -->
+  <div id="taskbar-center"></div>
+
+  <!-- System tray: static decorative icons + live clock -->
+  <div id="tray">
+    <!-- Wifi -->
+    <div class="tray-icon" id="wifi-btn" title="Network" style="cursor:pointer;">
+      <svg viewBox="0 0 24 24" fill="currentColor">
+        <path d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3c-1.65-1.66-4.34-1.66-6 0zm-4-4l2 2c2.76-2.76 7.24-2.76 10 0l2-2C15.14 9.14 8.87 9.14 5 13z"/>
+      </svg>
+    </div>
+    <!-- Volume -->
+    <div class="tray-icon" title="Volume">
+      <svg viewBox="0 0 24 24" fill="currentColor">
+        <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+      </svg>
+    </div>
+    <!-- Battery -->
+    <div class="tray-icon" title="Battery">
+      <svg viewBox="0 0 24 24" fill="currentColor">
+        <path d="M15.67 4H14V2h-4v2H8.33C7.6 4 7 4.6 7 5.33v15.33C7 21.4 7.6 22 8.33 22h7.33c.74 0 1.34-.6 1.34-1.33V5.33C17 4.6 16.4 4 15.67 4z"/>
+      </svg>
+    </div>
+    <!-- Clock -->
+    <div id="clock-area">
+      <span id="clock-time">--:--</span>
+      <span id="clock-date">--- --</span>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════ MOBILE VIEW ═══════════ -->
+<div id="mobile-view">
+
+  <!-- Status bar (decorative + clock) -->
+  <div id="m-statusbar">
+    <span id="m-status-time"></span>
+    <div id="m-status-icons">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3c-1.65-1.66-4.34-1.66-6 0zm-4-4l2 2c2.76-2.76 7.24-2.76 10 0l2-2C15.14 9.14 8.87 9.14 5 13z"/></svg>
+      <svg viewBox="0 0 16 16" fill="currentColor" width="14" height="14"><rect x="0" y="9"  width="3" height="7" rx="1"/><rect x="4" y="6"  width="3" height="10" rx="1"/><rect x="8" y="3"  width="3" height="13" rx="1"/><rect x="12" y="0" width="3" height="16" rx="1"/></svg>
+      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M15.67 4H14V2h-4v2H8.33C7.6 4 7 4.6 7 5.33v15.33C7 21.4 7.6 22 8.33 22h7.33c.74 0 1.34-.6 1.34-1.33V5.33C17 4.6 16.4 4 15.67 4z"/></svg>
+    </div>
+  </div>
+
+  <!-- Homescreen: clock widget + app grid -->
+  <div id="m-homescreen">
+    <div id="m-clock-widget">
+      <div id="m-clock-day"></div>
+      <div id="m-clock-time"></div>
+    </div>
+    <div id="m-app-grid"><!-- injected by JS --></div>
+  </div>
+
+  <!-- Bottom dock -->
+  <div id="m-dock">
+    <div id="m-dock-apps"><!-- injected by JS --></div>
+    <button id="m-apps-btn" aria-label="All apps" title="All apps">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22">
+        <circle cx="5"  cy="5"  r="2.2"/><circle cx="12" cy="5"  r="2.2"/><circle cx="19" cy="5"  r="2.2"/>
+        <circle cx="5"  cy="12" r="2.2"/><circle cx="12" cy="12" r="2.2"/><circle cx="19" cy="12" r="2.2"/>
+        <circle cx="5"  cy="19" r="2.2"/><circle cx="12" cy="19" r="2.2"/><circle cx="19" cy="19" r="2.2"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- CC backdrop (darkens page behind panel) -->
+  <div id="m-cc-backdrop"></div>
+
+  <!-- Control center panel (slides down from top) -->
+  <div id="m-cc-panel">
+    <div id="m-cc-inner">
+
+      <div id="m-cc-header">
+        <div id="m-cc-hdr-clock">
+          <span id="m-cc-time"></span>
+          <span id="m-cc-date"></span>
+        </div>
+        <button id="m-cc-settings-btn" title="Settings">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M19.14 12.94c.04-.3.06-.61.06-.94s-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+        </button>
+      </div>
+
+      <div id="m-cc-toggles">
+        <button class="m-cc-toggle active" id="m-cc-wifi-toggle" title="Wi-Fi">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3c-1.65-1.66-4.34-1.66-6 0zm-4-4l2 2c2.76-2.76 7.24-2.76 10 0l2-2C15.14 9.14 8.87 9.14 5 13z"/></svg>
+        </button>
+        <button class="m-cc-toggle" title="Bluetooth">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M17.71 7.71L12 2h-1v7.59L6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 11 14.41V22h1l5.71-5.71-4.3-4.29 4.3-4.29zM13 5.83l1.88 1.88L13 9.59V5.83zm1.88 10.46L13 18.17v-3.76l1.88 1.88z"/></svg>
+        </button>
+        <button class="m-cc-toggle active" title="Sound">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>
+        </button>
+        <button class="m-cc-toggle" title="Auto Rotate">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M7.11 8.53L5.7 7.11C4.8 8.27 4.24 9.61 4.07 11h2.02c.14-.87.49-1.72 1.02-2.47zM6.09 13H4.07c.17 1.39.72 2.73 1.62 3.89l1.41-1.42c-.52-.75-.87-1.59-1.01-2.47zm1.01 5.32c1.16.9 2.51 1.44 3.9 1.61V17.9c-.87-.15-1.71-.49-2.46-1.03L7.1 18.32zM13 4.07V1L8.45 5.55 13 10V6.09c2.84.48 5 2.94 5 5.91s-2.16 5.43-5 5.91v2.02c3.95-.49 7-3.85 7-7.93s-3.05-7.44-7-7.93z"/></svg>
+        </button>
+        <button class="m-cc-toggle" title="Torch">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M7 2v11h3v9l7-12h-4l4-8z"/></svg>
+        </button>
+        <button class="m-cc-toggle" title="Location">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        </button>
+      </div>
+
+      <div id="m-cc-brightness">
+        <svg class="m-cc-bright-icon" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69zM12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6zm0-10c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4z"/></svg>
+        <div id="m-cc-bright-track">
+          <div id="m-cc-bright-fill"></div>
+        </div>
+      </div>
+
+      <!-- WiFi sub-panel (inline network list) -->
+      <div id="m-cc-wifi-sub" class="m-hidden"></div>
+
+      <div id="m-cc-actions">
+        <button class="m-cc-action-btn">Device control</button>
+        <button class="m-cc-action-btn">Media output</button>
+      </div>
+
+      <div id="m-cc-notif-area">
+        <span>No notifications</span>
+      </div>
+
+    </div><!-- /m-cc-inner -->
+
+    <div id="m-cc-notif-bar">
+      <button id="m-cc-notif-settings-btn">Notification settings</button>
+    </div>
+
+    <div id="m-cc-handle"></div>
+  </div><!-- /m-cc-panel -->
+
+</div><!-- /mobile-view -->
+
+<!-- ═══════════ WJT CONFIG CONTENT ═══════════ -->
+<!-- Paste the wjt CS config here. Same rules as notepad — no JS escaping needed. -->
+<textarea id="wjt-src" style="display:none">// WJT CONFIG
+alias at "-attack";
+alias +jt "-!jump;at";
+alias -jt "+!jump";
+bind key +jt
+
+
+alias +wjt "-!forward; +jt";
+alias -wjt "+!forward; -jt";
+bind key +wjt
+</textarea>
+
+<!-- ═══════════ NOTEPAD CONTENT ═══════════ -->
+<!-- Paste your notepad text here. No JS escaping needed — backticks, backslashes, etc. are all safe. -->
+<textarea id="notepad-src" style="display:none">// GAME SETTINGS
+
+fps_max "0"
+//cl_updaterate 128
+//cl_interp 0.015625
+sensitivity 1.8
+volume 0.07
+r_show_build_info FALSE
+unbindall
+
+
+//CROSSHAIR COMMANDS
+cl_crosshairstyle 4
+cl_crosshairsize 2.5
+cl_crosshairthickness 0.5
+cl_crosshairgap 1.5
+cl_crosshair_drawoutline 1
+cl_crosshair_outlinethickness 0.5
+cl_crosshairdot 0
+cl_crosshair_t 0
+cl_crosshairusealpha 1
+cl_crosshairalpha 255
+cl_crosshair_recoil 1
+cl_crosshairgap_useweaponvalue 0
+cl_crosshaircolor 2
+
+//EXTRAS
+cl_crosshair_sniper_width 2
+cl_crosshair_friendly_warning 1
+hud_showtargetid 1
+cl_hud_color 12
+
+
+
+//VIEWMODEL
+
+viewmodel_presetpos 0
+viewmodel_offset_x 2.5
+viewmodel_offset_y 2
+viewmodel_offset_z -2
+viewmodel_fov 68
+cl_prefer_lefthanded 0
+
+
+
+//DESUBTICKED SHOOTING
+
+//alias _check1 "-attack; alias check1";
+//alias +m1 "+attack; alias check1 _check1";
+//alias -m1 "check1";
+	//bind mouse1 +m1
+
+// SUBTICKED CROUCH BINDS
+	bind "ctrl" "+duck"
+
+//NOCLIP ON HOLD
+alias +nClip "noclip"
+alias -nClip "noclip"
+	bind n "+nClip"
+
+	//spin ON HOLD
+alias +spin "tog;sensitivity 100"
+alias -spin "sensitivity 1.8"
+	bind , "+spin"
+
+
+//TOGGLEHUD
+	bind "p" "toggle cl_draw_only_deathnotices 0 1"
+
+
+
+// NEW HAND STUFF
+
+	bind "capslock" "switchhands"
+cl_prefer_lefthanded 0
+
+
+// NULLS
+bind a +a
+bind d +d
+bind w +w
+bind s +s
+exec nulls
+
+
+// NEW MOVEMENT STUFF 9/10/2025
+
+
+ alias +lj "+jump;+!forward;-!duck";
+alias -lj "-jump;+!duck";
+
+bind mouse5 +jb
+alias +jb "+jump;+!duck"
+alias -jb "-jump"
+
+
+bind alt +lj
+bind mwheelup +jump
+bind mwheeldown +jump
+bind space "+jump"
+
+
+
+
+// ALL CS2 REGULAR BINDS
+
+	bind "0"  "slot10"
+	bind "1"  "slot1"
+	bind "2"  "slot2"
+	bind "3"  "slot3"
+	bind "4"  "slot4"
+	bind "5"  "slot5"
+	bind "6"  "toggle cl_crosshair_recoil 1 0"
+	bind "7"  "slot12"
+	bind "8"  "slot8"
+	bind "9"  "slot9"
+	bind "b"  "buymenu"
+	bind "c"  "toggle cl_radar_scale 1 0.3"
+	//bind "c" "toggle fps_max 64 400"
+	bind "e"  "+use"
+	bind "f"  "+lookatweapon"
+	bind "g"  "drop"
+	bind "h"  "slot7"
+	bind "i"  "show_loadout_toggle"
+	bind "j"  "slot8"
+	bind ";"  "slot6"
+	bind "m"  "teammenu"
+	bind "q"  "lastinv"
+	bind "r"  "+reload"
+	bind "t"  "+spray_menu"
+	bind "u"  "messagemode2"
+	bind "v"  "+voicerecord"
+	bind "x"  "slot10"
+	bind "y"  "messagemode"
+	bind "z"  "radio"
+	bind "`"  "toggleconsole"
+	bind "TAB"  "+showscores"
+	bind "ESCAPE"  "cancelselect"
+	bind "DEL"  "sellbackall"
+	bind "SHIFT"  "+sprint"
+	bind "F3"  "autobuy"
+	bind "F7"  "rebuy"
+	bind "F5"  "jpeg"
+	bind "F6"  "save quick"
+	//bind "F7"  "load quick"
+	bind "F10"  "cs_quit_prompt"
+
+
+// CHAT BINDS
+
+bind "KP_0"  "say Я играю на лайфхакерском конфиге от Шока (◣_◢)"
+bind "KP_1"  "say ⛳ Hole in one! ⛳"
+bind "KP_2"  "say ¯\(°_o)/¯ IDK RETARD. SHUT UP !!!"
+bind "KP_3"  "say Yeah, I'm Tanka Jahari ✋ But I would never order a whole pizza for myself! 🚫 I mean, I'll take it... But you have to believe me... I would never order a whole pizza just for myself! But... I am Tanka Jahari... So...."
+bind "KP_4"  "say ʕᵔᴥᵔʔʕᵔᴥᵔʔʕᵔᴥᵔʔ"
+bind "KP_5"  "say (⌐■_■) КИКФЛИП МАФИЯ УБЛИЗНЬ (⌐■_■)"
+bind "KP_6"  "say shut up, i'm listening to music... d-.-b"
+bind "KP_7"  "say ¯\_(ツ)_/¯"
+bind "KP_8"  "say (☞ﾟヮﾟ)☞ nice try buddy ☜(ﾟヮﾟ☜)"
+bind "KP_9"  "say ♿♿♿♿♿♿♿♿"
+bind "KP_DIVIDE"  "say ✈⨅⨅"
+bind "KP_MULTIPLY"  "say cool story bro"
+bind "KP_MINUS"  "say 	༼つಠ益ಠ༽つ ─=≡ΣO)) GET FUCKED !!!!!!!!"
+bind "KP_PLUS"  "say let that sink in..."
+bind "KP_ENTER"  "say ⛹ Ballin"
+bind "KP_DEL"  "say \___/ <--- cry here africa need water 👍"
+
+
+// MOUSE BINDS
+	bind "MOUSE1" "+attack"
+	bind "MOUSE2"  "+attack2"
+	bind "MOUSE3"  "player_ping"
+bind "MOUSE_X"  "yaw"
+bind "MOUSE_Y"  "pitch"
+bind "X_AXIS"  "rightleft"
+bind "Y_AXIS"  "!forwardback"
+bind "R_AXIS"  "pitch"
+bind "U_AXIS"  "yaw"
+bind "X_AXIS"  "rightleft"
+bind "Y_AXIS"  "!forwardback"
+bind "R_AXIS"  "pitch"
+bind "U_AXIS"  "yaw"
+bind "X_AXIS"  "rightleft"
+bind "Y_AXIS"  "!forwardback"
+bind "R_AXIS"  "pitch"
+bind "U_AXIS"  "yaw"
+bind "X_AXIS"  "rightleft"
+bind "Y_AXIS"  "!forwardback"
+bind "R_AXIS"  "pitch"
+bind "U_AXIS"  "yaw"
+
+
+
+// toolvolume
+
+	snd_toolvolume 0.002
+
+// TAG
+echo .%%...%%..%%..%%..%%..%%.
+echo .%%%.%%%...%%%%...%%%.%%.
+echo .%%.%.%%....%%....%%.%%%.
+echo .%%...%%...%%%%...%%..%%.
+echo .%%...%%..%%..%%..%%..%%.
+echo .........................
+echo ..%%%%...%%%%%%...%%%%..
+echo .%%..%%..%%......%%.....
+echo .%%......%%%%....%%.%%%.
+echo .%%..%%..%%......%%..%%.
+echo ..%%%%...%%.......%%%%..
+echo ........................
+
+play \sounds\ambient\animal\cat_01.vsnd_c</textarea>
+
+<!-- ═══════════ ABOUT ME CONTENT ═══════════ -->
+<!-- Type your about text below. Plain text only — no HTML.
+     Spacing guide:
+       - Blank line between paragraphs (just press Enter twice).
+       - Two spaces at the end of a line = soft line break within a paragraph (not needed usually).
+       - Indent with spaces if you want monospace-style alignment (e.g. a fake table or ASCII art).
+       - The notepad font is monospace so every character is the same width — handy for alignment.
+     Keep lines under ~80 chars for comfortable reading at the default window width. -->
+<textarea id="about-src" style="display:none">about.txt — moonexe
+=====================================
+
+Hey, I'm Moonexe. I make Counter-Strike videos on youtube centered around configs, movement, bhop, and more. 
+
+I also make edits and very rarely on occasion, music. :)
+
+
+Join my discord to get access to my configs, updates, and news the day they come out!
+
+This website has 3 easter eggs, can you find them all?
+
+</textarea>
+
+<script src="config.js"></script>
+<script src="desktop.js"></script>
+<script src="windows.js"></script>
+<script src="apps/specs.js"></script>
+<script src="apps/folder.js"></script>
+<script src="apps/cmd.js"></script>
+<script src="apps/notepad.js"></script>
+<script src="apps/scroll-test.js"></script>
+<script src="apps/bind-gen.js"></script>
+<script src="apps/cfg-gen.js"></script>
+<script src="taskbar.js"></script>
+<script src="mobile.js"></script>
+<script src="init.js"></script>
+</body>
+</html>
