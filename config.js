@@ -259,7 +259,7 @@ const WINDOW_APPS = [
   {
     id:          'project1',
     label:       'README',
-    icon:        'textfile.png',
+    icon:        'txtfile.png',
     title:       'Projects',
     type:        'placeholder',
     hidden:      true,

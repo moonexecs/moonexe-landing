@@ -80,7 +80,7 @@ function buildFolderContent(folderApp) {
   const fileIcon = document.createElement('div');
   fileIcon.className = 'fe-file-icon';
   fileIcon.innerHTML = `
-    <img src="textfile.png" alt="README" draggable="false">
+    <img src="txtfile.png" alt="README" draggable="false">
     <span>README</span>
   `;
 
