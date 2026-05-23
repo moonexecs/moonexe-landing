@@ -5,19 +5,13 @@ function buildCmdContent() {
   const body = document.createElement('div');
   body.className = 'cmd-body';
 
-  // Welcome banner
-  const welcome = document.createElement('div');
-  welcome.className = 'cmd-line';
-  welcome.textContent = 'Microsoft Windows [Version 10.0.26100.4061]\n(c) Microsoft Corporation. All rights reserved.\n';
-  body.appendChild(welcome);
-
   // Current input row
   const inputRow = document.createElement('div');
   inputRow.className = 'cmd-input-row';
 
   const promptSpan = document.createElement('span');
   promptSpan.className = 'cmd-prompt-span';
-  promptSpan.textContent = 'C:\\Users\\moon>';
+  promptSpan.innerHTML = '<span class="cmd-ps-user">user@moonexe</span><span class="cmd-ps-colon">:</span><span class="cmd-ps-path">~</span><span class="cmd-ps-dollar">$ </span>';
 
   const input = document.createElement('input');
   input.type = 'text';
@@ -42,7 +36,8 @@ function buildCmdContent() {
 
     const echoLine = document.createElement('div');
     echoLine.className = 'cmd-line';
-    echoLine.textContent = 'C:\\Users\\moon>' + cmd;
+    echoLine.innerHTML = '<span class="cmd-ps-user">user@moonexe</span><span class="cmd-ps-colon">:</span><span class="cmd-ps-path">~</span><span class="cmd-ps-dollar">$ </span>';
+    echoLine.appendChild(document.createTextNode(cmd));
     body.appendChild(echoLine);
 
     if (cmd.trim() === 'ping') {

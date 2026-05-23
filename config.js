@@ -247,6 +247,7 @@ const WINDOW_APPS = [
     defaultW: 480,
     defaultH: 420,
   },
+  /*
   {
     id: 'projects',
     label: 'projects',
@@ -256,16 +257,24 @@ const WINDOW_APPS = [
     defaultW: 780,
     defaultH: 500,
   },
+  */
+  {
+    id:       'socials',
+    label:    'Socials',
+    icon:     "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M10 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z' fill='%23FFB900'/%3E%3Cpath d='M10 4H4c-1.1 0-2 .9-2 2v1h20V8c0-1.1-.9-2-2-2h-8l-2-2z' fill='%23FFD04A'/%3E%3C/svg%3E",
+    title:    'Socials',
+    type:     'folder',
+    defaultW: 780,
+    defaultH: 500,
+  },
   {
     id:          'project1',
     label:       'README',
     icon:        'txtfile.png',
-    title:       'Projects',
-    type:        'placeholder',
-    hidden:      true,
+    title:       'README',
+    type:        'readme',
     defaultW:    600,
     defaultH:    440,
-    placeholder: 'The apps in this folder are a WIP. \nIf they don\'t work as intended, they will be fixed later. \n But they should work properly atm.',
   },
   {
     id: 'about',
@@ -324,7 +333,6 @@ const WINDOW_APPS = [
     icon:     'scrollTest.png',
     title:    'Scroll-Test',
     type:     'scroll-test',
-    hidden:   true,
     defaultW: 500,
     defaultH: 500,
   },
@@ -334,7 +342,6 @@ const WINDOW_APPS = [
     icon:     'chatbindGen.png',
     title:    'Chat Bind Generator',
     type:     'bind-gen',
-    hidden:   true,
     defaultW: 920,
     defaultH: 640,
   },
@@ -344,9 +351,21 @@ const WINDOW_APPS = [
     icon:     'cfgGen.png',
     title:    'CS2 Config Generator',
     type:     'cfg-gen',
-    hidden:   true,
     defaultW: 1000,
     defaultH: 700,
+  },
+  {
+    id:        'bhop-tester',
+    label:     'Bhop Tester',
+    icon:      'favicon.png',
+    title:     'Bhop Tester',
+    type:      'bhop-tester',
+    hidden:    true,
+    noResize:  true,
+    sizeFn:    function (vw, vh) {
+      const s = Math.max(420, Math.floor(Math.min(vw, vh) * 0.45));
+      return { w: s, h: s };
+    },
   },
   // ADD MORE APPS HERE ↓
 ];
@@ -410,16 +429,24 @@ const SPECS_TREE = [
 // Adjust these to rearrange icons.
 // Positions are multiples of ICON_GRID (88px) so icons start pre-snapped.
 const ICON_POSITIONS = {
-  youtube:  { x: 10,  y: 10  },
-  twitter:  { x: 98,  y: 10  },
-  twitch:   { x: 186, y: 10  },
-  tiktok:   { x: 274, y: 10  },
-  discord:  { x: 362, y: 10  },
-  steam:    { x: 450, y: 10  },
+  // Row 1 — tool apps
+  project1:       { x: 10,  y: 10  },
+  'scroll-test':  { x: 98,  y: 10  },
+  'bind-gen':     { x: 186, y: 10  },
+  'cfg-gen':      { x: 274, y: 10  },
+  // Row 2 — unchanged
   specs:    { x: 10,  y: 98  },
-  projects: { x: 98,  y: 98  },
-  about:    { x: 186, y: 98  },
+  // projects: { x: 98,  y: 98  },
+  about:    { x: 98,  y: 98  },
   hl3:      { x: 274, y: 98  },
+  // Bottom row — Socials folder (individual links now live inside the folder)
+  socials:  { x: 10,  fromBottom: 10 },
+  // youtube:  { x: 10,  fromBottom: 10 },
+  // twitter:  { x: 98,  fromBottom: 10 },
+  // twitch:   { x: 186, fromBottom: 10 },
+  // tiktok:   { x: 274, fromBottom: 10 },
+  // discord:  { x: 362, fromBottom: 10 },
+  // steam:    { x: 450, fromBottom: 10 },
   // ADD POSITIONS FOR NEW ICONS HERE ↓
 };
 

@@ -8,3 +8,6 @@ skills-lock.json
 # Backup files (not part of the live site)
 script.js
 beforeindex.html
+
+# WIP apps (not ready for the live site)
+apps/bhop-tester.js

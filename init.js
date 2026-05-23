@@ -16,8 +16,9 @@
 /* ═══════════════════════════════════════════════════════════════
    INIT — Build desktop icons
 ═══════════════════════════════════════════════════════════════ */
+/* Social links are inside the Socials folder — no desktop icons
 SOCIAL_LINKS.forEach(link => {
-  createDesktopIcon({
+  const el = createDesktopIcon({
     id:      link.id,
     label:   link.label,
     iconSrc: `https://cdn.simpleicons.org/${link.icon}/${link.color}`,
@@ -27,7 +28,9 @@ SOCIAL_LINKS.forEach(link => {
       updateTaskbar();
     },
   });
+  el.classList.add('desk-icon--social');
 });
+*/
 
 WINDOW_APPS.forEach(app => {
   if (app.hidden) return; // Easter egg — no desktop icon

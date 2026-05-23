@@ -11,12 +11,14 @@ function buildWinContent(app) {
   if (app.type === 'cmd')     return buildCmdContent();
   if (app.type === 'notepad') return buildNotepadContent();
   if (app.type === 'wjt')     return buildWjtContent();
+  if (app.type === 'readme')  return buildReadmeContent();
   if (app.type === 'about')   return buildAboutContent();
   if (app.type === 'specs')  return buildSpecsTree();
   if (app.type === 'folder')      return buildFolderContent(app);
   if (app.type === 'scroll-test') return buildScrollTestContent();
   if (app.type === 'bind-gen')   return buildBindGenContent();
   if (app.type === 'cfg-gen')    return buildCfgGenContent();
+  if (app.type === 'bhop-tester') return buildBhopTesterContent();
 
   const div = document.createElement('div');
   div.className = 'placeholder-content';
@@ -36,8 +38,14 @@ function openWindow(app) {
   const vw       = window.innerWidth;
   const vh       = window.innerHeight - parseInt(getComputedStyle(document.documentElement).getPropertyValue('--taskbar-h'));
   const isMobile = vw <= 767;
-  const w        = app.defaultW || 500;
-  const h        = app.defaultH || 400;
+  let w, h;
+  if (typeof app.sizeFn === 'function') {
+    const sz = app.sizeFn(vw, vh);
+    w = sz.w; h = sz.h;
+  } else {
+    w = app.defaultW || 500;
+    h = app.defaultH || 400;
+  }
   const jitter   = count * 26;
   const left     = Math.max(20, Math.floor((vw - w) / 2) + jitter);
   const top      = Math.max(20, Math.floor((vh - h) / 2) + jitter);
@@ -75,12 +83,16 @@ function openWindow(app) {
 
   win.addEventListener('mousedown', () => focusWin(win));
 
+  if (app.noResize) win.classList.add('win--no-resize');
+
   if (!isMobile) {
     initWinDrag(win, win.querySelector('.win__titlebar'));
-    win.querySelectorAll('.win__resize').forEach(handle => {
-      const dir = [...handle.classList].find(c => c.startsWith('win__resize--')).slice(13);
-      handle.addEventListener('mousedown', e => { e.stopPropagation(); initResize(win, e, dir); });
-    });
+    if (!app.noResize) {
+      win.querySelectorAll('.win__resize').forEach(handle => {
+        const dir = [...handle.classList].find(c => c.startsWith('win__resize--')).slice(13);
+        handle.addEventListener('mousedown', e => { e.stopPropagation(); initResize(win, e, dir); });
+      });
+    }
   }
 
   if (!winInstances[app.id]) winInstances[app.id] = [];

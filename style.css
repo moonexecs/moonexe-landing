@@ -97,6 +97,9 @@ body {
   /* subtle drop shadow so icons pop against dark/light wallpaper */
   filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5));
 }
+.desk-icon--social .desk-icon__img {
+  padding: 10px;
+}
 .desk-icon__label {
   font-size: 11.5px;
   font-weight: 400;
@@ -202,7 +205,8 @@ body {
 }
 .win__btn:hover              { background: rgba(255,255,255,0.08); color: var(--text-1); }
 .win__btn--close:hover       { background: #c42b1c; color: #fff; }
-.win__btn--max               { font-size: 12px; }
+.win__btn--max               { font-size: 12px; padding-bottom: 4px; }
+.win__btn--min               { padding-bottom: 4px; }
 
 /* Content */
 .win__content {
@@ -963,7 +967,7 @@ body {
   font-family: 'Consolas', 'Lucida Console', monospace;
   font-size: 14px;
   line-height: 1.48;
-  color: #cccccc;
+  color: #ffffff;
   cursor: text;
   user-select: text;
   -webkit-user-select: text;
@@ -980,16 +984,20 @@ body {
   margin-top: 1px;
 }
 .cmd-prompt-span { flex-shrink: 0; }
+.cmd-ps-user   { color: #4CAF50; font-weight: bold; }
+.cmd-ps-colon  { color: #ffffff; }
+.cmd-ps-path   { color: #729fcf; font-weight: bold; }
+.cmd-ps-dollar { color: #ffffff; }
 .cmd-input {
   background: transparent;
   border: none;
   outline: none;
-  color: #cccccc;
+  color: #ffffff;
   font-family: 'Consolas', 'Lucida Console', monospace;
   font-size: 14px;
   line-height: 1.48;
   flex: 1;
-  caret-color: #cccccc;
+  caret-color: #ffffff;
   padding: 0;
   min-width: 0;
   user-select: text;
@@ -2274,3 +2282,141 @@ body {
   opacity: 1;
   transform: translateX(-50%) translateY(0);
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   WINDOW — NO-RESIZE FLAG (used by Bhop Tester)
+═══════════════════════════════════════════════════════════════ */
+.win--no-resize .win__btn--max { display: none; }
+.win--no-resize .win__resize   { display: none; }
+
+/* ═══════════════════════════════════════════════════════════════
+   BHOP TESTER
+═══════════════════════════════════════════════════════════════ */
+.bt-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #2b2b2b;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Segoe UI', sans-serif;
+  user-select: none;
+  overflow: hidden;
+}
+
+.bt-hiscore {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  color: #ffffff;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+.bt-stage {
+  position: relative;
+  width: min(78%, 78vh);
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bt-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.bt-inner {
+  stroke: #ffffff;
+  transition: stroke 80ms linear;
+}
+.bt-inner--green    { stroke: #3aa84a; }
+.bt-inner--cooldown { stroke: #e23b3b; }
+.bt-inner--fail     { stroke: #e23b3b; }
+
+.bt-outer {
+  stroke: #ffffff;
+  opacity: 0.95;
+}
+
+.bt-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  width: 40%;
+  height: 40%;
+}
+.bt-center--clickable {
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.bt-center-text {
+  font-size: 64px;
+  font-weight: 600;
+  color: #ffffff;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  text-align: center;
+}
+.bt-center-text--start    { color: #e23b3b; font-size: 44px; }
+.bt-center-text--cooldown { color: #e23b3b; font-size: 48px; }
+.bt-center-text--fail     { color: #e23b3b; }
+
+.bt-foot {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 0 20px;
+  pointer-events: none;
+}
+
+.bt-instructions {
+  color: #d6d6d6;
+  font-size: 13px;
+  text-align: center;
+  max-width: 90%;
+  line-height: 1.4;
+}
+
+.bt-newhi {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-align: center;
+}
+
+.bt-try {
+  pointer-events: auto;
+  background: transparent;
+  color: #ffffff;
+  border: 1.5px solid #ffffff;
+  border-radius: 18px;
+  padding: 8px 22px;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: background 120ms ease, color 120ms ease;
+}
+.bt-try:hover  { background: rgba(255,255,255,0.1); }
+.bt-try:active { background: rgba(255,255,255,0.2); }
+

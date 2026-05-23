@@ -2,8 +2,6 @@
    FOLDER / FILE EXPLORER CONTENT
 ═══════════════════════════════════════════════════════════════ */
 function buildFolderContent(folderApp) {
-  const project1App = WINDOW_APPS.find(a => a.id === 'project1');
-
   const wrap = document.createElement('div');
   wrap.className = 'fe-wrap';
 
@@ -46,7 +44,7 @@ function buildFolderContent(folderApp) {
     <span class="fe-addr-text">
       <span class="fe-addr-seg">This PC</span>
       <span class="fe-addr-sep"> › </span>
-      <span class="fe-addr-seg fe-addr-seg--current">projects</span>
+      <span class="fe-addr-seg fe-addr-seg--current">${folderApp.label}</span>
     </span>
   `;
 
@@ -77,91 +75,101 @@ function buildFolderContent(folderApp) {
   const main = document.createElement('div');
   main.className = 'fe-main';
 
+  // ── Socials folder ──────────────────────────────────────────
+  if (folderApp.id === 'socials') {
+    SOCIAL_LINKS.forEach(link => {
+      const icon = document.createElement('div');
+      icon.className = 'fe-file-icon';
+      icon.innerHTML = `
+        <img src="https://cdn.simpleicons.org/${link.icon}/${link.color}" alt="${link.label}" draggable="false">
+        <span>${link.label}</span>
+      `;
+      let lastTap = 0;
+      icon.addEventListener('click', () => {
+        const now = Date.now();
+        if (now - lastTap < 400) {
+          window.open(link.url, '_blank', 'noopener,noreferrer');
+          lastTap = 0;
+        } else {
+          lastTap = now;
+        }
+      });
+      main.appendChild(icon);
+    });
+  }
+
+  /* PROJECTS_FOLDER — restore when needed
+  const project1App = WINDOW_APPS.find(a => a.id === 'project1');
+
   const fileIcon = document.createElement('div');
   fileIcon.className = 'fe-file-icon';
-  fileIcon.innerHTML = `
-    <img src="txtfile.png" alt="README" draggable="false">
-    <span>README</span>
-  `;
-
+  fileIcon.innerHTML = `<img src="txtfile.png" alt="README" draggable="false"><span>README</span>`;
   let feLastTap = 0;
   fileIcon.addEventListener('click', () => {
     const now = Date.now();
-    if (now - feLastTap < 400) {
-      if (project1App) openWindow(project1App);
-      feLastTap = 0;
-    } else {
-      feLastTap = now;
-    }
+    if (now - feLastTap < 400) { if (project1App) openWindow(project1App); feLastTap = 0; }
+    else { feLastTap = now; }
   });
-
   main.appendChild(fileIcon);
 
   const scrollTestApp = WINDOW_APPS.find(a => a.id === 'scroll-test');
   const scrollTestIcon = document.createElement('div');
   scrollTestIcon.className = 'fe-file-icon';
-  scrollTestIcon.innerHTML = `
-    <img src="scrollTest.png" alt="Scroll-Test" draggable="false">
-    <span>Scroll-Test</span>
-  `;
+  scrollTestIcon.innerHTML = `<img src="scrollTest.png" alt="Scroll-Test" draggable="false"><span>Scroll-Test</span>`;
   let stLastTap = 0;
   scrollTestIcon.addEventListener('click', () => {
     const now = Date.now();
-    if (now - stLastTap < 400) {
-      if (scrollTestApp) openWindow(scrollTestApp);
-      stLastTap = 0;
-    } else {
-      stLastTap = now;
-    }
+    if (now - stLastTap < 400) { if (scrollTestApp) openWindow(scrollTestApp); stLastTap = 0; }
+    else { stLastTap = now; }
   });
   main.appendChild(scrollTestIcon);
 
   const bindGenApp = WINDOW_APPS.find(a => a.id === 'bind-gen');
   const bindGenIcon = document.createElement('div');
   bindGenIcon.className = 'fe-file-icon';
-  bindGenIcon.innerHTML = `
-    <img src="chatbindGen.png" alt="Chat Bind Gen" draggable="false">
-    <span>Chat Bind Gen</span>
-  `;
+  bindGenIcon.innerHTML = `<img src="chatbindGen.png" alt="Chat Bind Gen" draggable="false"><span>Chat Bind Gen</span>`;
   let bgLastTap = 0;
   bindGenIcon.addEventListener('click', () => {
     const now = Date.now();
-    if (now - bgLastTap < 400) {
-      if (bindGenApp) openWindow(bindGenApp);
-      bgLastTap = 0;
-    } else {
-      bgLastTap = now;
-    }
+    if (now - bgLastTap < 400) { if (bindGenApp) openWindow(bindGenApp); bgLastTap = 0; }
+    else { bgLastTap = now; }
   });
   main.appendChild(bindGenIcon);
 
   const cfgGenApp = WINDOW_APPS.find(a => a.id === 'cfg-gen');
   const cfgGenIcon = document.createElement('div');
   cfgGenIcon.className = 'fe-file-icon';
-  cfgGenIcon.innerHTML = `
-    <img src="cfgGen.png" alt="CS2 Config Gen" draggable="false">
-    <span>CS2 Config Gen</span>
-  `;
+  cfgGenIcon.innerHTML = `<img src="cfgGen.png" alt="CS2 Config Gen" draggable="false"><span>CS2 Config Gen</span>`;
   let cfgLastTap = 0;
   cfgGenIcon.addEventListener('click', () => {
     const now = Date.now();
-    if (now - cfgLastTap < 400) {
-      if (cfgGenApp) openWindow(cfgGenApp);
-      cfgLastTap = 0;
-    } else {
-      cfgLastTap = now;
-    }
+    if (now - cfgLastTap < 400) { if (cfgGenApp) openWindow(cfgGenApp); cfgLastTap = 0; }
+    else { cfgLastTap = now; }
   });
   main.appendChild(cfgGenIcon);
+
+  const bhopTesterApp = WINDOW_APPS.find(a => a.id === 'bhop-tester');
+  const bhopTesterIcon = document.createElement('div');
+  bhopTesterIcon.className = 'fe-file-icon';
+  bhopTesterIcon.innerHTML = `<img src="favicon.png" alt="Bhop Tester" draggable="false"><span>Bhop Tester</span>`;
+  let btLastTap = 0;
+  bhopTesterIcon.addEventListener('click', () => {
+    const now = Date.now();
+    if (now - btLastTap < 400) { if (bhopTesterApp) openWindow(bhopTesterApp); btLastTap = 0; }
+    else { btLastTap = now; }
+  });
+  main.appendChild(bhopTesterIcon);
+  PROJECTS_FOLDER */
 
   body.appendChild(sidebar);
   body.appendChild(main);
   wrap.appendChild(body);
 
   // Status bar
+  const count = folderApp.id === 'socials' ? SOCIAL_LINKS.length : 0;
   const statusBar = document.createElement('div');
   statusBar.className = 'fe-statusbar';
-  statusBar.textContent = '4 items';
+  statusBar.textContent = `${count} item${count !== 1 ? 's' : ''}`;
   wrap.appendChild(statusBar);
 
   return wrap;

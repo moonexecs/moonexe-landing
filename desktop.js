@@ -22,7 +22,7 @@ function createDesktopIcon({ id, label, iconSrc, onDblClick }) {
   // Position
   const pos = ICON_POSITIONS[id] || { x: 24, y: 24 };
   el.style.left = pos.x + 'px';
-  el.style.top  = pos.y + 'px';
+  el.style.top  = pos.fromBottom !== undefined ? '0px' : pos.y + 'px';
 
   el.addEventListener('mousedown', e => {
     if (e.button !== 0) return;
@@ -38,7 +38,12 @@ function createDesktopIcon({ id, label, iconSrc, onDblClick }) {
 
   el.addEventListener('dblclick', e => { e.preventDefault(); onDblClick(); });
 
-  document.getElementById('desktop').appendChild(el);
+  const desk = document.getElementById('desktop');
+  desk.appendChild(el);
+  if (pos.fromBottom !== undefined) {
+    el.style.top = (desk.offsetHeight - pos.fromBottom - el.offsetHeight) + 'px';
+  }
+  return el;
 }
 
 function selectIcon(el) {
