@@ -47,7 +47,7 @@ function createDesktopIcon({ id, label, iconSrc, onDblClick }) {
 }
 
 function selectIcon(el) {
-  if (selectedIcon && selectedIcon !== el) selectedIcon.classList.remove('selected');
+  document.querySelectorAll('.desk-icon.selected').forEach(i => i.classList.remove('selected'));
   selectedIcon = el;
   el.classList.add('selected');
 }
@@ -58,8 +58,9 @@ document.getElementById('desktop').addEventListener('mousedown', e => {
   const desktop = document.getElementById('desktop');
   if (e.target !== desktop && e.target !== document.getElementById('select-box')) return;
 
-  // Deselect any currently selected icon
-  if (selectedIcon) { selectedIcon.classList.remove('selected'); selectedIcon = null; }
+  // Deselect all currently selected icons
+  document.querySelectorAll('.desk-icon.selected').forEach(i => i.classList.remove('selected'));
+  selectedIcon = null;
 
   const box    = document.getElementById('select-box');
   const dRect  = desktop.getBoundingClientRect();

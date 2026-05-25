@@ -14,7 +14,7 @@ const SOCIAL_LINKS = [
   { id: 'twitch',   label: 'Twitch',     icon: 'twitch',   color: '9146FF', url: 'https://twitch.tv/moonexecs' },
   { id: 'tiktok',   label: 'TikTok',     icon: 'tiktok',   color: 'ffffff', url: 'https://tiktok.com/@moonexecs' },
   { id: 'discord',  label: 'Discord',    icon: 'discord',  color: '5865F2', url: 'https://discord.gg/uVYjJdH4JE' },
-  { id: 'steam',    label: 'Steam',      icon: 'steam',    color: 'c6d4df', url: 'https://steamcommunity.com/id/moonexe' },
+  // { id: 'steam',    label: 'Steam',      icon: 'steam',    color: 'c6d4df', url: 'https://steamcommunity.com/id/moonexe' },
 ];
 
 // Notepad content is read lazily inside buildNotepadContent() — see below.
@@ -238,35 +238,35 @@ NOTEPAD_SRC_BACKUP */
 // type: 'placeholder' shows a coming-soon message (easy to replace).
 // ADD NEW APPS HERE ↓
 const WINDOW_APPS = [
+  // Row 1 (mobile) — project apps
   {
-    id: 'specs',
-    label: 'specs',
-    icon:  'specs.png',
-    title: 'Device Manager',
-    type:  'specs',
-    defaultW: 480,
-    defaultH: 420,
+    id:       'cfg-gen',
+    label:    'CS2 Config Gen',
+    icon:     'cfgGen.png',
+    title:    'CS2 Config Generator',
+    type:     'cfg-gen',
+    defaultW: 1000,
+    defaultH: 700,
   },
-  /*
   {
-    id: 'projects',
-    label: 'projects',
-    icon:  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M10 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z' fill='%23FFB900'/%3E%3Cpath d='M10 4H4c-1.1 0-2 .9-2 2v1h20V8c0-1.1-.9-2-2-2h-8l-2-2z' fill='%23FFD04A'/%3E%3C/svg%3E",
-    title: 'projects',
-    type:  'folder',
-    defaultW: 780,
+    id:       'bind-gen',
+    label:    'Chat Bind Gen',
+    icon:     'chatbindGen.png',
+    title:    'Chat Bind Generator',
+    type:     'bind-gen',
+    defaultW: 920,
+    defaultH: 640,
+  },
+  {
+    id:       'scroll-test',
+    label:    'Scroll-Test',
+    icon:     'scrollTest.png',
+    title:    'Scroll-Test',
+    type:     'scroll-test',
+    defaultW: 500,
     defaultH: 500,
   },
-  */
-  {
-    id:       'socials',
-    label:    'Socials',
-    icon:     "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M10 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z' fill='%23FFB900'/%3E%3Cpath d='M10 4H4c-1.1 0-2 .9-2 2v1h20V8c0-1.1-.9-2-2-2h-8l-2-2z' fill='%23FFD04A'/%3E%3C/svg%3E",
-    title:    'Socials',
-    type:     'folder',
-    defaultW: 780,
-    defaultH: 500,
-  },
+  // Row 2 (mobile) — info apps
   {
     id:          'project1',
     label:       'README',
@@ -284,6 +284,25 @@ const WINDOW_APPS = [
     type:  'about',
     defaultW: 600,
     defaultH: 460,
+  },
+  {
+    id: 'specs',
+    label: 'specs',
+    icon:  'specs.png',
+    title: 'Device Manager',
+    type:  'specs',
+    defaultW: 480,
+    defaultH: 420,
+  },
+  // Row 3 (mobile) — socials folder (bottom left)
+  {
+    id:       'socials',
+    label:    'Socials',
+    icon:     "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M10 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z' fill='%23FFB900'/%3E%3Cpath d='M10 4H4c-1.1 0-2 .9-2 2v1h20V8c0-1.1-.9-2-2-2h-8l-2-2z' fill='%23FFD04A'/%3E%3C/svg%3E",
+    title:    'Socials',
+    type:     'folder',
+    defaultW: 780,
+    defaultH: 500,
   },
   // Easter egg apps — hidden from desktop, accessible via secret actions.
   {
@@ -326,33 +345,6 @@ const WINDOW_APPS = [
     hidden: true,
     defaultW: 500,
     defaultH: 380,
-  },
-  {
-    id:       'scroll-test',
-    label:    'Scroll-Test',
-    icon:     'scrollTest.png',
-    title:    'Scroll-Test',
-    type:     'scroll-test',
-    defaultW: 500,
-    defaultH: 500,
-  },
-  {
-    id:       'bind-gen',
-    label:    'Chat Bind Gen',
-    icon:     'chatbindGen.png',
-    title:    'Chat Bind Generator',
-    type:     'bind-gen',
-    defaultW: 920,
-    defaultH: 640,
-  },
-  {
-    id:       'cfg-gen',
-    label:    'CS2 Config Gen',
-    icon:     'cfgGen.png',
-    title:    'CS2 Config Generator',
-    type:     'cfg-gen',
-    defaultW: 1000,
-    defaultH: 700,
   },
   {
     id:        'bhop-tester',

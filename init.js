@@ -84,18 +84,13 @@ document.addEventListener('mousedown', e => {
     }
 
     WINDOW_APPS.filter(a => !a.hidden).forEach(app => {
-      addIcon(makeMobileAppIcon(app.id, app.label, app.icon, () => {
-        document.getElementById('windows-layer').classList.add('mobile-open');
-        openWindow(app);
-      }));
-    });
-
-    SOCIAL_LINKS.forEach(link => {
-      addIcon(makeMobileAppIcon(
-        link.id, link.label,
-        `https://cdn.simpleicons.org/${link.icon}/${link.color}`,
-        () => window.open(link.url, '_blank', 'noopener,noreferrer')
-      ));
+      const onTap = app.type === 'folder'
+        ? () => openMobileFolder(app)
+        : () => {
+            document.getElementById('windows-layer').classList.add('mobile-open');
+            openWindow(app);
+          };
+      addIcon(makeMobileAppIcon(app.id, app.label, app.icon, onTap));
     });
 
     mUpdateGridHeight(grid);

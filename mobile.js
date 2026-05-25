@@ -1,4 +1,64 @@
 /* ═══════════════════════════════════════════════════════════════
+   MOBILE FOLDER OVERLAY (Samsung One UI style)
+═══════════════════════════════════════════════════════════════ */
+function openMobileFolder(app) {
+  if (document.getElementById('m-folder-overlay')) return;
+  const mobileView = document.getElementById('mobile-view');
+  if (!mobileView) return;
+
+  const overlay = document.createElement('div');
+  overlay.id = 'm-folder-overlay';
+
+  const title = document.createElement('div');
+  title.className = 'm-folder-title';
+  title.textContent = app.title || app.label;
+
+  const card = document.createElement('div');
+  card.className = 'm-folder-card';
+
+  const grid = document.createElement('div');
+  grid.className = 'm-folder-grid';
+
+  SOCIAL_LINKS.forEach(link => {
+    const iconEl = document.createElement('div');
+    iconEl.className = 'm-folder-icon';
+
+    const imgWrap = document.createElement('div');
+    imgWrap.className = 'm-folder-icon-img';
+
+    const img = document.createElement('img');
+    img.src = `https://cdn.simpleicons.org/${link.icon}/${link.color}`;
+    img.alt = link.label;
+    img.draggable = false;
+
+    const label = document.createElement('span');
+    label.textContent = link.label;
+
+    imgWrap.appendChild(img);
+    iconEl.appendChild(imgWrap);
+    iconEl.appendChild(label);
+
+    iconEl.addEventListener('click', e => {
+      e.stopPropagation();
+      window.open(link.url, '_blank', 'noopener,noreferrer');
+    });
+
+    grid.appendChild(iconEl);
+  });
+
+  card.appendChild(grid);
+  overlay.appendChild(title);
+  overlay.appendChild(card);
+  mobileView.appendChild(overlay);
+
+  function closeOverlay(e) {
+    if (card.contains(e.target) || title.contains(e.target)) return;
+    overlay.remove();
+  }
+  overlay.addEventListener('click', closeOverlay);
+}
+
+/* ═══════════════════════════════════════════════════════════════
    MOBILE APP GRID HELPERS
 ═══════════════════════════════════════════════════════════════ */
 function mSetIconPos(icon, col, row) {
