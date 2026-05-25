@@ -174,7 +174,6 @@
 </div><!-- /mobile-view -->
 
 <!-- ═══════════ WJT CONFIG CONTENT ═══════════ -->
-<!-- Paste the wjt CS config here. Same rules as notepad — no JS escaping needed. -->
 <textarea id="wjt-src" style="display:none">// WJT CONFIG
 alias at "-attack";
 alias +jt "-!jump;at";
@@ -188,7 +187,6 @@ bind key +wjt
 </textarea>
 
 <!-- ═══════════ NOTEPAD CONTENT ═══════════ -->
-<!-- Paste your notepad text here. No JS escaping needed — backticks, backslashes, etc. are all safe. -->
 <textarea id="notepad-src" style="display:none">// GAME SETTINGS
 
 fps_max "0"
@@ -403,27 +401,43 @@ echo ........................
 play \sounds\ambient\animal\cat_01.vsnd_c</textarea>
 
 <!-- ═══════════ README CONTENT ═══════════ -->
-<textarea id="readme-src" style="display:none">The apps in this folder are a WIP. If they don't work as intended, they will be fixed later. But they should work properly atm.</textarea>
+<textarea id="readme-src" style="display:none">
+  The apps on this website are designed to help make the coding aspect of configs easier.
+
+  The current apps offered at the moment are:
+
+  SCROLLTEST: An app designed to show any input discrepencies in the mouse's scrollwheel.
+    - The app scans and processes each scroll tick as it comes in, displaying a constant stream of inputs as cyan or pink ribbons.
+    - Scrolling up or down will draw a ribbon. If at any point during the scroll, there is a gap in the ribbon, this indicates an input error.
+    
+  CHAT BIND GENERATOR: An app designed to help with creating chat binds for CS2.
+    - Users are able to stylize text through multiple fonts and choose from a large bank of ASCII emojis that are compatible with the in-game chat window.
+    - Enter your desired message into the center text-box and hit Make Bind.
+    - Select what key you would like to bind the chat message to and the app will automatically generate a pasteable bind that you can put into your console or autoexec file.
+
+  CS2 CONFIG GENERATOR: An app designed to ease the burden of coding individual autoexec.cfg files featuring every current utility bind in the game.
+    - Users are able to select which feature(s) they would like in their config, choosing what key to bind it to.
+    - Once a user has made their selection of features, the app allows for either direct copy-paste into a pre-existing autoexec file, or the ability to download a pre-populated autoexec.cfg file.
+    - ** NULL BINDS require a seperate .cfg file to accompany the main autoexec. If the nulls feature is selected, the app allows for either direct copy-pasting into a nulls.cfg file, or the ability to download a pre-populated nulls.cfg file.
+
+  IF YOU RUN INTO ANY ISSUES WITH ANY OF THE APPS, PLEASE LET ME KNOW BY EITHER JOINING MY DISCORD OR VIA MY EMAIL: moonexe.biz@gmail.com
+
+  I'm currently working on several other apps, check back every once in a while to see if they have been added :)
+
+</textarea>
 
 <!-- ═══════════ ABOUT ME CONTENT ═══════════ -->
-<!-- Type your about text below. Plain text only — no HTML.
-     Spacing guide:
-       - Blank line between paragraphs (just press Enter twice).
-       - Two spaces at the end of a line = soft line break within a paragraph (not needed usually).
-       - Indent with spaces if you want monospace-style alignment (e.g. a fake table or ASCII art).
-       - The notepad font is monospace so every character is the same width — handy for alignment.
-     Keep lines under ~80 chars for comfortable reading at the default window width. -->
+
 <textarea id="about-src" style="display:none">about.txt — moonexe
 =====================================
 
-Hey, I'm Moonexe. I make Counter-Strike videos on youtube centered around configs, movement, bhop, and more. 
+Hi, I'm Moonexe. I make Counter-Strike and gaming content revolving around configs, coding, and movement! 
 
-I also make edits and very rarely on occasion, music. :)
+I also make edits on occasion. :)
 
+If you find any issues/bugs with any apps or the website in general, consider joining my discord and letting me know!
 
-Join my discord to get access to my configs, updates, and news the day they come out!
-
-This website has 3 easter eggs, can you find them all?
+Thank you for visiting!
 
 </textarea>
 
