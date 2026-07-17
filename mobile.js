@@ -9,6 +9,11 @@ function openMobileFolder(app) {
   const overlay = document.createElement('div');
   overlay.id = 'm-folder-overlay';
 
+  // Ghost-click guard: ignore clicks landing right after the overlay opens,
+  // in case the browser still synthesizes one for the opening tap
+  const openedAt = Date.now();
+  const isGhostClick = () => Date.now() - openedAt < 350;
+
   const title = document.createElement('div');
   title.className = 'm-folder-title';
   title.textContent = app.title || app.label;
@@ -40,6 +45,7 @@ function openMobileFolder(app) {
 
     iconEl.addEventListener('click', e => {
       e.stopPropagation();
+      if (isGhostClick()) return;
       window.open(link.url, '_blank', 'noopener,noreferrer');
     });
 
@@ -52,6 +58,7 @@ function openMobileFolder(app) {
   mobileView.appendChild(overlay);
 
   function closeOverlay(e) {
+    if (isGhostClick()) return;
     if (card.contains(e.target) || title.contains(e.target)) return;
     overlay.remove();
   }
@@ -127,6 +134,9 @@ function mobileInitIconInteraction(icon) {
 
   icon.addEventListener('touchend', e => {
     if (mDrag && mDrag.icon === icon && !mDrag.dragging) {
+      // Suppress the synthesized click, which would otherwise fall through
+      // onto whatever the tap handler renders under the finger
+      e.preventDefault();
       clearTimeout(mDrag.holdTimer);
       mDrag = null;
       icon._onTap?.();

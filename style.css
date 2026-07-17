@@ -1032,6 +1032,28 @@ body {
 @media (max-width: 767px) {
   #desktop, #taskbar, #windows-layer { display: none !important; }
   #mobile-view { display: block; }
+
+  /* CS2 Config Generator: stack panels vertically, scroll via .win__content */
+  .cg-wrap {
+    flex-direction: column;
+    height: auto;
+    min-height: 100%;
+    overflow: visible;
+  }
+  .cg-left,
+  .cg-right { flex: 0 0 auto; }
+  .cg-grid { grid-template-columns: repeat(2, 1fr); }
+  .cg-grid--center { flex-wrap: wrap; }
+  .cg-output-ta { min-height: 220px; }
+
+  /* Chat Bind Generator: keyboard scrolls horizontally inside the overlay */
+  .bg-kb-overlay { overflow-y: auto; }
+  .bg-kb-content {
+    overflow-x: auto;
+    max-width: 100%;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 8px;
+  }
 }
 
 /* ═══════════════════════════════════════════
