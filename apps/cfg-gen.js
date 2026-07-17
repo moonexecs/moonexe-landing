@@ -12,7 +12,7 @@ function buildCfgGenContent() {
         code: '// [Bhop Binds]\nbind mwheelup "+jump"\nbind mwheeldown "+jump"'},
       { id: 'longjump',  label: 'Long Jump Bind',     needsKey: true,  tooltip: 'crouches and jumps for you',
         template: '// [Long Jump Bind]\nalias +lj "+duck; bind mouse_x lj1"\nalias -lj "-duck; bind mouse_x lj2"\nalias lj1 "+jump; revert"\nalias lj2 "-jump; revert"\nalias revert "bind mouse_x yaw"\nbind {KEY} +lj' },
-      { id: 'wlongjump', label: '-w Long Jump Bind',  disabled: true,  tooltip: 'crouches, jumps, and releases w for you',
+      { id: 'wlongjump', label: '-w Long Jump Bind',  disabled: true,  tooltip: 'CURRENTLY UNAVAILABLE - thank valve',
         template: '// [-W Long Jump Bind]\nalias +wlj "+jump;+!forward;-!duck"\nalias -wlj "-jump;+!duck"\nbind {KEY} +wlj' },
       { id: 'jumpbug',   label: 'Jump Bug Bind',      needsKey: true,  tooltip: 'uncrouches and jumps for you',
         template: '// [Jump Bug Bind]\nalias jbn "-duck; bind mouse_x jb1"\nalias jb1 "+jump; bind mouse_x jb2"\nalias jb2 "-jump; revert"\nalias revert "bind mouse_x yaw"\nbind {KEY} jbn' },
@@ -22,9 +22,9 @@ function buildCfgGenContent() {
       { id: 'pixelsurf', label: 'Pixel Surf Binds',   disabled: true,  tooltip: 'Coming soon…' },
     ],
     qol: [
-      { id: 'jumpthrow',  label: 'Jump Throw Bind',     disabled: true, tooltip: 'jumps and throws for you',
+      { id: 'jumpthrow',  label: 'Jump Throw Bind',     disabled: true, tooltip: 'CURRENTLY UNAVAILABLE - thank valve',
         template: '// [Jump Throw Bind]\nalias at "-attack"\nalias +jt "-!jump;at"\nalias -jt "+!jump"\nbind {KEY} +jt' },
-      { id: 'wjumpthrow', label: 'W Jump Throw Bind',   disabled: true, tooltip: 'presses w, jumps, and throws for you',
+      { id: 'wjumpthrow', label: 'W Jump Throw Bind',   disabled: true, tooltip: 'CURRENTLY UNAVAILABLE - thank valve',
         template: '// [W Jump Throw Bind]\nalias at "-attack"\nalias +jt "-!jump;at"\nalias -jt "+!jump"\nalias +wjt "-!forward; +jt"\nalias -wjt "+!forward; -jt"\nbind {KEY} +wjt',
         templateShort: '// [W Jump Throw Bind]\nalias +wjt "-!forward; +jt"\nalias -wjt "+!forward; -jt"\nbind {KEY} +wjt' },
       { id: 'minimap',    label: 'Minimap Zoom Bind',   needsKey: true, tooltip: 'toggles minimap zoom',
@@ -35,6 +35,11 @@ function buildCfgGenContent() {
         template: '// [Toggle Hud Bind]\nbind {KEY} "toggle cl_draw_only_deathnotices 0 1"' },
       { id: 'highsens',   label: 'High Sens Hold Bind', needsKey: true, tooltip: 'hold key for high sens, let go to return to normal',
         template: '// [High Sens Hold Bind]\nalias +spin "tog;sensitivity 100"\nalias -spin "sensitivity {SENS}"\nbind {KEY} +spin' },
+      { id: 'rainbowhud', label: 'Rainbow Hud',         needsKey: false, tooltip: 'cycles through every HUD color on WASD presses',
+        // Emitted when Null Binds is NOT selected → standard +forward/+left/+back/+right
+        code: '// [Rainbow HUD]\nalias colors "colors0"\nalias colors0 "cl_hud_color 1; alias colors colors1"\nalias colors1 "cl_hud_color 5; alias colors colors2"\nalias colors2 "cl_hud_color 8; alias colors colors3"\nalias colors3 "cl_hud_color 3; alias colors colors4"\nalias colors4 "cl_hud_color 4; alias colors colors5"\nalias colors5 "cl_hud_color 0; alias colors colors6"\nalias colors6 "cl_hud_color 6; alias colors colors7"\nalias colors7 "cl_hud_color 7; alias colors colors8"\nalias colors8 "cl_hud_color 2; alias colors colors9"\nalias colors9 "cl_hud_color 9; alias colors colors10"\nalias colors10 "cl_hud_color 10; alias colors colors11"\nalias colors11 "cl_hud_color 11; alias colors colors12"\nalias colors12 "cl_hud_color 12; alias colors colors0"\n\nbind w "+forward; colors;"\nbind a "+left; colors;"\nbind s "+back; colors;"\nbind d "+right; colors;"',
+        // Emitted when Null Binds IS selected → +w/+a/+s/+d so nulls.cfg aliasing still applies
+        codeWithNulls: '// [Rainbow HUD]\nalias colors "colors0"\nalias colors0 "cl_hud_color 1; alias colors colors1"\nalias colors1 "cl_hud_color 5; alias colors colors2"\nalias colors2 "cl_hud_color 8; alias colors colors3"\nalias colors3 "cl_hud_color 3; alias colors colors4"\nalias colors4 "cl_hud_color 4; alias colors colors5"\nalias colors5 "cl_hud_color 0; alias colors colors6"\nalias colors6 "cl_hud_color 6; alias colors colors7"\nalias colors7 "cl_hud_color 7; alias colors colors8"\nalias colors8 "cl_hud_color 2; alias colors colors9"\nalias colors9 "cl_hud_color 9; alias colors colors10"\nalias colors10 "cl_hud_color 10; alias colors colors11"\nalias colors11 "cl_hud_color 11; alias colors colors12"\nalias colors12 "cl_hud_color 12; alias colors colors0"\n\nbind w "+w; colors;"\nbind a "+a; colors;"\nbind s "+s; colors;"\nbind d "+d; colors;"' },
     ],
     performance: [
       { id: 'maxfps',          label: 'Max FPS 0',         needsKey: false, cvar: true, tooltip: 'Uncaps FPS',
@@ -116,7 +121,7 @@ function buildCfgGenContent() {
 
   const header = document.createElement('div');
   header.className = 'cg-header';
-  header.textContent = 'CONFIG UP-TO-DATE AS OF: April 6, 2026';
+  header.textContent = 'CONFIG UP-TO-DATE AS OF: July 16, 2026';
   left.appendChild(header);
 
   const instructions = document.createElement('div');
@@ -405,7 +410,11 @@ function buildCfgGenContent() {
           }
           blocks.push(line);
         } else if (!f.needsKey && toggles.has(f.id)) {
-          blocks.push(f.code);
+          if (f.id === 'rainbowhud') {
+            blocks.push(toggles.has('nulls') ? f.codeWithNulls : f.code);
+          } else {
+            blocks.push(f.code);
+          }
         }
       });
       if (blocks.length === 0) return;
