@@ -437,7 +437,8 @@ function buildCfgGenContent() {
     });
   }
 
-  function createSubWin(title, contentEl, w, h) {
+  // Center a sub-window over the parent app window (or the viewport as a fallback).
+  function centerWin(win, w, h) {
     const vw = window.innerWidth;
     const vh = window.innerHeight;
     const parentWin = wrap.closest('.win');
@@ -450,12 +451,15 @@ function buildCfgGenContent() {
       left = Math.round((vw - w) / 2);
       top  = Math.round((vh - h) / 2);
     }
-    left = Math.max(20, left);
-    top  = Math.max(20, top);
+    win.style.left = Math.max(20, left) + 'px';
+    win.style.top  = Math.max(20, top)  + 'px';
+  }
 
+  function createSubWin(title, contentEl, w, h) {
     const win = document.createElement('div');
     win.className = 'win';
-    win.style.cssText = `left:${left}px; top:${top}px; width:${w}px; height:${h}px;`;
+    win.style.cssText = `width:${w}px; height:${h}px;`;
+    centerWin(win, w, h);
 
     const titlebar = document.createElement('div');
     titlebar.className = 'win__titlebar';
@@ -500,6 +504,16 @@ function buildCfgGenContent() {
     inner.appendChild(kbWarning);
     inner.appendChild(kbContent);
     const { win, titleSpan, closeBtn } = createSubWin(`Pick a key for: ${feat.label}`, inner, 960, 310);
+    // The full keyboard is wider than the default window, so the mouse column was
+    // clipped and needed sideways scrolling. Grow the window to absorb the horizontal
+    // overflow and re-center it, never exceeding the viewport width.
+    const kbContentArea = win.querySelector('.win__content');
+    const overflow = kbContentArea.scrollWidth - kbContentArea.clientWidth;
+    if (overflow > 0) {
+      const w = Math.min(win.offsetWidth + overflow + 4, window.innerWidth - 40);
+      win.style.width = w + 'px';
+      centerWin(win, w, 310);
+    }
     kbWin = win;
     kbWinTitleEl = titleSpan;
     closeBtn.addEventListener('click', closeKeyboard);
